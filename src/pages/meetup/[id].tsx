@@ -21,7 +21,7 @@ const Meetup: NextPage = () => {
         setMeetup(meetup);
       }
     }
-  }, [meetup, router.query]);
+  }, [meetups, router.query]);
 
   const handleRsvp = (name: string, email: string) => {
     if (!meetup) return;
@@ -42,6 +42,7 @@ const Meetup: NextPage = () => {
             <span className="text-black font-semibold">{meetup.hostedBy}</span>
           </p>
           <img
+            alt={meetup.title}
             src={meetup.eventThumbnail}
             className="h-30 w-full max-w-[30rem]   rounded-md object-cover mt-4"
           />
@@ -67,7 +68,10 @@ const Meetup: NextPage = () => {
           <div className="flex flex-row gap-4 mt-4">
             {meetup.eventTags.map((tag) => {
               return (
-                <p className="flex gap-4 mt-2 capitalize border px-5 py-2 rounded-xl bg-red-500 text-white">
+                <p
+                  className="flex gap-4 mt-2 capitalize border px-5 py-2 rounded-xl bg-red-500 text-white"
+                  key={tag}
+                >
                   {tag}
                 </p>
               );
@@ -141,6 +145,7 @@ const Meetup: NextPage = () => {
                   >
                     <div className=" flex justify-center">
                       <img
+                        alt={speaker.name}
                         src={speaker.image}
                         className="w-[80px] h-[80px] object-cover rounded-full"
                       />
